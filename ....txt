@@ -1,0 +1,12 @@
+FormForLogin=LoginForm()
+    if FormForLogin.validate_on_submit():
+        user = User.query.filter_by(username=FormForLogin.username.data).first()
+        if user is None or not user.check_passowrd(FormForLogin.password.data):
+            flash('Invalid username or password')
+            return redirect(url_for('login'))
+        login_user(user, remember=FormForLogin.remember_me.data)
+        next_page = request.args.get('next')
+        if not next_page or url_parse(next_page).netloc != '':
+            next_page = url_for('index')
+        return redirect(next_page)
+    
