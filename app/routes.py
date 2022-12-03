@@ -43,3 +43,7 @@ def login():
             next_page = url_for('index')
         return redirect(next_page)
     return render_template('login.html', form=form)
+
+@app.route('/proile', methods=['GET', 'POST'])
+def profile():
+    return render_template('profile.html')

@@ -27,6 +27,17 @@ class Offer(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
     description = db.Column(db.String(250))
-    category = db.Column(db.String(50))
-    time
-    status
+    categories = db.Column(db.Integer, db.ForeignKey('category.id'))
+    time = db.Column(db.DateTime, index=True)
+    status = db.Column(db.String(10))
+
+    def __repr__(self):
+        return '<Offer {}>'.format(self.body)
+
+class Category(UserMixin, db.Model):
+    id = db.Column(db.Integer, primary_key=True)
+    name = db.Column(db.String(64), index=True, unique=True)
+    offers = db.relationship("Offer", backref="category", lazy="dynamic")
+
+    def __repr__(self):
+        return '<Category {}>'.format(self.body)
