@@ -1,53 +1,48 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
-</head>
-<body>
-    <header>
-        <div><h1>Заголовок</h1>
-        <h2>Доп заголовок</h2></div>
-        <div class="content"></div><nav>
-            <p><a href="#register">Регистрация</a></p>
-            <p><a href="#index.html"><img src="../app/static/images/logo.png" alt="logo"></a></p>
-            <p><a href="#login">Войти</a></p>
-        </nav>
-    </header>
+{% extends "base.html" %}
+
+{% block content %}
     <main>
         <div class=content>
             <div class="head">Ваши заявки</div>
-            <p class="small">Все |Новые | Решёные | Отклонённые</p>
-            <table>
-                <tr>
-                    <th>Название</th>
-                    <th>Статус</th>
-                    <th>Категория</th>
-                    <th>Description</th>
-                    <th>datetime</th>                    
-                </tr> <tr>
-                    <th>New zaiavka</th>
-                    <th>Odobrena</th>
-                    <th>first category</th>
-                    <th>zaiavka decription</th>
-                    <th>2022-09-22 09:00:00</th>
-                </tr> <tr>
-                    <th>odobrena zaiavka</th>
-                    <th>odobrena</th>
-                    <th>second category</th>
-                    <th>zaiavka Description</th>
-                    <th>2022-09-22 09:00:00</th>
-                </tr> <tr>
-                    <th>otklonena zaiavka</th>
-                    <th>otklonena</th>
-                    <th>second category</th>
-                    <th>zaiavka Description</th>
-                    <th>2022-09-22 09:00:00</th>
-                </tr>
-            </table>
+            <div class="row">
+                <div class="col">
+                    <h2>Очень оригинальное название</h2>
+                    <img src="../static/images/img1.png" alt="">
+                    <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
+                    <p>категория заявки: <b>Первая категория</b></p>
+                    <p>Статус заявки: <b>Одобренно</b></p>
+                    <p class="small">2022-01-21 09:00:00</p>
+                </div>
+                <div class="col">
+                    <h2>Очень оригинальное название</h2>
+                    <img src="../static/images/img1.png" alt="">
+                    <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
+                    <p>категория заявки: <b>Вторая категория</b></p>
+                    <p>Статус заявки: <b>Ты думал здесь чтото будет?</b></p>
+                    <p class="small">2022-01-21 09:00:00</p>
+                </div>
+                <div class="col">
+                    <h2>Очень оригинальное название</h2>
+                    <img src="../static/images/img1.png" alt="">
+                    <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
+                    <p>категория заявки: <b>Первая категория</b></p>
+                    <p>Статус заявки: <b>Одобренно</b></p>
+                    <p class="small">2022-01-21 09:00:00</p>
+                </div>
+            </div>
+            <div class="head">Добавить Заявку</div>
+            <form action="admin.html" enctype="multipart/form-data" method="post">
+                <input type="text" name="title" placeholder="Название" required pattern="{1,64}">
+                <textarea name="description" placeholder="Описание" required patter="{1,256}"></textarea>
+                <select required name="category" id="">
+                    <option value selected disabled>Категория заявки</option>
+                    <option value>Первая Категория</option>
+                    <option value>Вторая Категория</option>
+                </select>
+                <p class="left">Фотография заявки</p>
+                <input type="file" required name="img">
+                <button>Создать Заявку</button>
+            </form>
         </div>
     </main>
-</body>
-</html>
+{% endblock %}
