@@ -12,9 +12,9 @@
         <div><h1>Заголовок</h1>
         <h2>Доп заголовок</h2></div>
         <div class="content"></div><nav>
-            <p><a href="#register">Регистрация</a></p>
-            <p><a href="#index.html"><img src="../static/images/logo.png" alt="logo"></a></p>
-            <p><a href="#login">Войти</a></p>
+            <p><a href="{{url_for('registration')}}">Регистрация</a></p>
+            <p><a href="{{url_for('index')}}"><img src="../static/images/logo.png" alt="logo"></a></p>
+            <p><a href="{{url_for('login')}}">Войти</a></p>
         </nav>
     </header>
     {% block content %}{% endblock %}
