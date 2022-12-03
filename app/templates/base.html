@@ -7,15 +7,15 @@
     <title>Document</title>
     <link rel="stylesheet" href="../static/css/style.css">
 </head>
-<body>
+<body>    
     <header>
-        <div><h1>Заголовок</h1>
-        <h2>Доп заголовок</h2></div>
-        <div class="content"></div><nav>
-            <p><a href="{{url_for('registration')}}">Регистрация</a></p>
-            <p><a href="{{url_for('index')}}"><img src="../static/images/logo.png" alt="logo"></a></p>
-            <p><a href="{{url_for('login')}}">Войти</a></p>
-        </nav>
+        <div class="content"><nav>
+            <p><a href="{{ url_for('index') }}"><img href="../static/images/logo.png"></a></p>
+            <p><a href="{{ url_for('login') }}">Sign up</a></p>
+            <p><a href="{{ url_for('registration') }}">Log in</a></p>
+            <p><a href="{{ url_for('profile') }}">Profile</a></p>
+            </nav>
+        </div>
     </header>
     {% block content %}{% endblock %}
 </body>

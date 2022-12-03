@@ -1,22 +1,26 @@
 {% extends "base.html" %}
 
 {% block content %}
-<div class="head" id="login">Войти</div>
-<form action="" method="post">
-    {{ form.hidden_tag() }}
-    <p>
-        {{ form.username(size=32, placeholder="Логин (Латиница, до 16 символов)", pattern="[a-zA-Z]{1,16}") }}<br>
-        {% for error in form.username.errors %}
-        <span style="color: red;">[{{ error }}]</span>
-        {% endfor %}
-    </p>
-    <p>
+<main>
+<div class="content">
+    <div class="head" id="login">Войти</div>
+    <form action="" method="post">
+        {{ form.hidden_tag() }}
+        <p>
+            {{ form.username(size=32, placeholder="Логин (Латиница, до 16 символов)", pattern="[a-zA-Z]{1,16}") }}<br>
+            {% for error in form.username.errors %}
+            <span style="color: red;">[{{ error }}]</span>
+            {% endfor %}
+        </p>
+        <p>
         {{ form.password(size=32, placeholder="пароль (до 32 символов)", pattern=".{1,32}") }}<br>
         {% for error in form.password.errors %}
         <span style="color: red;">[{{ error }}]</span>
         {% endfor %}
-    </p>
-    <button>{{ form.submit() }}</button>
-</form>
+        </p>
+        {{ form.submit() }}
+    </form>
+</div>
+</main>
 
 {% endblock %}
