@@ -11,9 +11,13 @@
     <header>
         <div class="content"><nav>
             <p><a href="{{ url_for('index') }}"><img href="../static/images/logo.png"></a></p>
-            <p><a href="{{ url_for('login') }}">Войти</a></p>
-            <p><a href="{{ url_for('registration') }}">Регистрация</a></p>
-            <p><a href="{{ url_for('profile') }}">Личный кабинет</a></p>
+            {% if current_user.is_anonymous %}
+                <p><a href="{{ url_for('login') }}">Войти</a></p>
+                <p><a href="{{ url_for('registration') }}">Регистрация</a></p>
+            {% else %}
+                <p><a href="{{ url_for('logout') }}">Выйти</a></p>
+                <p><a href="{{ url_for('profile') }}">Личный кабинет</a></p>
+            {% endif %}
             </nav>
         </div>
     </header>

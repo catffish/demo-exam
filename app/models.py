@@ -8,7 +8,8 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-
+    offers = db.relationship('Offer', backref="author", lazy="dynamic")
+    
     def __repr__(self):
         return 'user {}'.format(self.username)
 
@@ -28,6 +29,7 @@ class Offer(UserMixin, db.Model):
     name = db.Column(db.String(64), index=True)
     description = db.Column(db.String(250))
     categories = db.Column(db.Integer, db.ForeignKey('category.id'))
+    users = db.Column(db.Integer, db.ForeignKey('author.id'))
     time = db.Column(db.DateTime, index=True)
     status = db.Column(db.String(10))
 

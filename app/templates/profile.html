@@ -3,7 +3,7 @@
 {% block content %}
     <main>
         <div class=content>
-        {% if user_type=="admin" %}
+        {% if current_user.username=="admin" %}
         <main>
             <div class="content">
                 <div class="head">Категории</div>
@@ -38,31 +38,15 @@
                 <div class="head">Одобренные заявки</div>
                 <p class="small"></p>
                 <div class="row">
-                    <div class="col">
-                        <img src="../static/images/pic1.png">
-                        <h3>Одобренная заявка</h3>
-                        <p>Категория заявки: <b>Первая категория</b></p>
-                        <p class="small">2022-01-21 09:00:00</p>
-                    </div>
-                    <div class="col">
-                        <img src="../static/images/pic2.png">
-                        <h3>Одобренная заявка</h3>
-                        <p>Категория заявки: <b>Вторая категория</b></p>
-                        <p class="small">2022-01-21 09:00:00</p>
-                    </div>
-                    
-                    <div class="col">
-                        <img src="../static/images/pic4.png">
-                        <h3>Одобренная заявка</h3>
-                        <p>Категория заявки: <b>Вторая категория</b></p>
-                        <p class="small">2022-01-21 09:00:00</p>
-                    </div>
+                    {% for offer in offers %}
+                        {% include '_offer.html' %}
+                    {% endfor %}
                 </div>
             </div>
         </main>
 
         {% else %}
-        
+
         <div class="head">Ваши заявки</div>
         <form action="" method="post">
             {{ form.hidden_tag() }}
@@ -78,27 +62,7 @@
             {{form.submit}}
         </form>
         <div class="row">
-            <div class="col">
-                <h2>Очень оригинальное название</h2>
-                <img src="../static/images/img1.png" alt="">
-                <p>категория заявки: <b>Первая категория</b></p>
-                <p>Статус заявки: <b>Одобренно</b></p>
-                <p class="small">2022-01-21 09:00:00</p>
-            </div>
-            <div class="col">
-                <h2>Очень оригинальное название</h2>
-                <img src="../static/images/img1.png" alt="">
-                <p>категория заявки: <b>Вторая категория</b></p>
-                <p>Статус заявки: <b>Ты думал здесь чтото будет?</b></p>
-                <p class="small">2022-01-21 09:00:00</p>
-            </div>
-            <div class="col">
-                <h2>Очень оригинальное название</h2>
-                <img src="../static/images/img1.png" alt="">
-                <p>категория заявки: <b>Первая категория</b></p>
-                <p>Статус заявки: <b>Одобренно</b></p>
-                <p class="small">2022-01-21 09:00:00</p>
-            </div>
+            
         </div>
         <div class="head">Добавить Заявку</div>
         <form action="admin.html" enctype="multipart/form-data" method="post">

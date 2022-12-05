@@ -1,4 +1,8 @@
 <div class="col">
-    <h1>Заявка</h1>
-    <img src="../static/images/pic3.png">
+    <h1>{{name}}</h1>
+    <img src="../static/images/img2.png">
+    <p>{{category}}</p>
+    {% if current_user.username=="admin" %}
+    <p>{{description}}</p>
+    {% endif %}
 </div>

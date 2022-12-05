@@ -44,7 +44,13 @@ def login():
         return redirect(next_page)
     return render_template('login.html', form=form)
 
+@app.route('/logout')
+def logout():
+    logout_user()
+    return redirect(url_for('index'))
+
 @app.route('/proile', methods=['GET', 'POST'])
+@login_required
 def profile():
     if current_user.username=="admin":
         form=CreateCategoryForm()
@@ -54,6 +60,7 @@ def profile():
             db.session.commit()
             flash('Категория создана')
             return redirect(url_for('profile'))
+        offers=Offer.query.filter_by(status="новая")
     else:
         form=CreateOfferForm()
         if form.validate_on_submit():
@@ -62,9 +69,10 @@ def profile():
                 pass
             else:
                 return redirect(url_for('login'))
-            offer=Offer(name=form.name.data, description=form.description.data, category=form.category.data)
+            offer=Offer(name=form.name.data, description=form.description.data, category=form.category.data, user=current_user.username)
             db.session.add(offer)
             db.session.comit()
             flash('Заявка создана')
+            offers=Offer.query.filter_by(user = current_user.username)
             return redirect(url_for('profile'))
-    return render_template('profile.html', user_type=current_user.username, form=form)
+    return render_template('profile.html', form=form, offers=offers)
