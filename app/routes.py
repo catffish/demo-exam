@@ -46,4 +46,4 @@ def login():
 
 @app.route('/proile', methods=['GET', 'POST'])
 def profile():
-    return render_template('profile.html')
+    return render_template('profile.html', user_type=current_user.username)

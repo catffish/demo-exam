@@ -3,46 +3,51 @@
 {% block content %}
     <main>
         <div class=content>
-            <div class="head">Ваши заявки</div>
-            <div class="row">
-                <div class="col">
-                    <h2>Очень оригинальное название</h2>
-                    <img src="../static/images/img1.png" alt="">
-                    <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
-                    <p>категория заявки: <b>Первая категория</b></p>
-                    <p>Статус заявки: <b>Одобренно</b></p>
-                    <p class="small">2022-01-21 09:00:00</p>
-                </div>
-                <div class="col">
-                    <h2>Очень оригинальное название</h2>
-                    <img src="../static/images/img1.png" alt="">
-                    <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
-                    <p>категория заявки: <b>Вторая категория</b></p>
-                    <p>Статус заявки: <b>Ты думал здесь чтото будет?</b></p>
-                    <p class="small">2022-01-21 09:00:00</p>
-                </div>
-                <div class="col">
-                    <h2>Очень оригинальное название</h2>
-                    <img src="../static/images/img1.png" alt="">
-                    <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
-                    <p>категория заявки: <b>Первая категория</b></p>
-                    <p>Статус заявки: <b>Одобренно</b></p>
-                    <p class="small">2022-01-21 09:00:00</p>
-                </div>
+        {% if user_type=="admin" %}
+        {{user_type}}
+        ПРИВЕТ, АДМИН
+        {% else %}
+        <div class="head">Ваши заявки</div>
+        <div class="row">
+            <div class="col">
+                <h2>Очень оригинальное название</h2>
+                <img src="../static/images/img1.png" alt="">
+                <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
+                <p>категория заявки: <b>Первая категория</b></p>
+                <p>Статус заявки: <b>Одобренно</b></p>
+                <p class="small">2022-01-21 09:00:00</p>
             </div>
-            <div class="head">Добавить Заявку</div>
-            <form action="admin.html" enctype="multipart/form-data" method="post">
-                <input type="text" name="title" placeholder="Название" required pattern="{1,64}">
-                <textarea name="description" placeholder="Описание" required patter="{1,256}"></textarea>
-                <select required name="category" id="">
-                    <option value selected disabled>Категория заявки</option>
-                    <option value>Первая Категория</option>
-                    <option value>Вторая Категория</option>
-                </select>
-                <p class="left">Фотография заявки</p>
-                <input type="file" required name="img">
-                <button>Создать Заявку</button>
-            </form>
+            <div class="col">
+                <h2>Очень оригинальное название</h2>
+                <img src="../static/images/img1.png" alt="">
+                <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
+                <p>категория заявки: <b>Вторая категория</b></p>
+                <p>Статус заявки: <b>Ты думал здесь чтото будет?</b></p>
+                <p class="small">2022-01-21 09:00:00</p>
+            </div>
+            <div class="col">
+                <h2>Очень оригинальное название</h2>
+                <img src="../static/images/img1.png" alt="">
+                <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
+                <p>категория заявки: <b>Первая категория</b></p>
+                <p>Статус заявки: <b>Одобренно</b></p>
+                <p class="small">2022-01-21 09:00:00</p>
+            </div>
+        </div>
+        <div class="head">Добавить Заявку</div>
+        <form action="admin.html" enctype="multipart/form-data" method="post">
+            <input type="text" name="title" placeholder="Название" required pattern="{1,64}">
+            <textarea name="description" placeholder="Описание" required patter="{1,256}"></textarea>
+            <select required name="category" id="">
+                <option value selected disabled>Категория заявки</option>
+                <option value>Первая Категория</option>
+                <option value>Вторая Категория</option>
+            </select>
+            <p class="left">Фотография заявки</p>
+            <input type="file" required name="img">
+            <button>Создать Заявку</button>
+        </form>
+        {% endif %}
         </div>
     </main>
 {% endblock %}
