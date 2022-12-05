@@ -7,15 +7,12 @@
         <main>
             <div class="content">
                 <div class="head">Категории</div>
-                <form action="admin.html" enctype="multipart/form-data" method="post">
-                    <input type="text" name="title" placeholder="Название" required pattern="{1,64}">
-                    </textarea>
-                    <select required name="category" id="">
-                        <option value selected disabled>Категория</option><button>Создать Заявку</button>
-                        <option value>Первая Категория</option>
-                        <option value>Вторая Категория</option>
-                    </select>
-                    <button>Создать Заявку</button>
+                <form action="" method="post">
+                    {{ form.hidden_tag() }}
+                    <p>
+                        {{ form.name(size=32) }}
+                    </p>
+                    {{form.submit}}
                 </form>
                 <div class="head">Новые заявки</div>
                 <div class="row">
@@ -66,6 +63,19 @@
 
         {% else %}
         <div class="head">Ваши заявки</div>
+        <form action="" method="post">
+            {{ form.hidden_tag() }}
+            <p>
+                {{ form.name(size=32) }}
+            </p>
+            <p>
+                {{ form.description(size=50) }}
+            </p>
+            <p>
+                {{ form.category(size=32) }}
+            </p>
+            {{form.submit}}
+        </form>
         <div class="row">
             <div class="col">
                 <h2>Очень оригинальное название</h2>

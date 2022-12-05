@@ -33,6 +33,8 @@ class CreateOfferForm(FlaskForm):
     name=StringField('name', validators=[DataRequired()])
     description=TextAreaField('description')
     category=StringField('category', validators=[DataRequired()])
+    submit = SubmitField('Добавить заявку', validators=[DataRequired()])
 
 class CreateCategoryForm(FlaskForm):
     name=StringField('name', validators=[DataRequired()])
+    submit = SubmitField('Создать категорию', validators=[DataRequired()])
