@@ -4,15 +4,72 @@
     <main>
         <div class=content>
         {% if user_type=="admin" %}
-        {{user_type}}
-        ПРИВЕТ, АДМИН
+        <main>
+            <div class="content">
+                <div class="head">Категории</div>
+                <form action="admin.html" enctype="multipart/form-data" method="post">
+                    <input type="text" name="title" placeholder="Название" required pattern="{1,64}">
+                    </textarea>
+                    <select required name="category" id="">
+                        <option value selected disabled>Категория</option><button>Создать Заявку</button>
+                        <option value>Первая Категория</option>
+                        <option value>Вторая Категория</option>
+                    </select>
+                    <button>Создать Заявку</button>
+                </form>
+                <div class="head">Новые заявки</div>
+                <div class="row">
+                    <div class="col">
+                        <img src="../static/images/Снимок экрана 2022-09-06 102946.png">
+                        <p>Статус заявки: <input type="text" name="status" placeholder="Изменить статус заявки"></p>
+                        <p>Создан пользователем: <b>Василий Петрович</b></p>
+                        <p>Описание</p>
+                        <p>Из-за таких ям на дорогах у меня на машине появилась цензура на номере</p>
+                        <input type="text" name="status" placeholder="Добавить коментарий"><br>
+                        <button>Обновить</button>
+                    </div>
+                    <div class="col">
+                        <img src="../static/images/Снимок экрана 2022-09-06 103010.png">
+                        <p>Статус заявки: <input type="text" name="status" placeholder="Изменить статус заявки"></p>
+                        <p>Создан пользователем: <b>Игорб</b></p>
+                        <p>Описание</p>
+                        <p>Мы пытались зарисовать ямы спомощью краски нечего не получилось :( почините дороги пожожда</p>
+                        <input type="text" name="status" placeholder="Добавить коментарий"><br>
+                        <button>Обновить</button>
+                    </div>
+                </div>
+                <div class="head">Одобренные заявки</div>
+                <p class="small"></p>
+                <div class="row">
+                    <div class="col">
+                        <img src="../static/images/pic1.png">
+                        <h3>Одобренная заявка</h3>
+                        <p>Категория заявки: <b>Первая категория</b></p>
+                        <p class="small">2022-01-21 09:00:00</p>
+                    </div>
+                    <div class="col">
+                        <img src="../static/images/pic2.png">
+                        <h3>Одобренная заявка</h3>
+                        <p>Категория заявки: <b>Вторая категория</b></p>
+                        <p class="small">2022-01-21 09:00:00</p>
+                    </div>
+                    
+                    <div class="col">
+                        <img src="../static/images/pic4.png">
+                        <h3>Одобренная заявка</h3>
+                        <p>Категория заявки: <b>Вторая категория</b></p>
+                        <p class="small">2022-01-21 09:00:00</p>
+                    </div>
+                </div>
+            </div>
+        </main>
+
         {% else %}
         <div class="head">Ваши заявки</div>
         <div class="row">
             <div class="col">
                 <h2>Очень оригинальное название</h2>
                 <img src="../static/images/img1.png" alt="">
-                <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
                 <p>категория заявки: <b>Первая категория</b></p>
                 <p>Статус заявки: <b>Одобренно</b></p>
                 <p class="small">2022-01-21 09:00:00</p>
@@ -20,7 +77,6 @@
             <div class="col">
                 <h2>Очень оригинальное название</h2>
                 <img src="../static/images/img1.png" alt="">
-                <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
                 <p>категория заявки: <b>Вторая категория</b></p>
                 <p>Статус заявки: <b>Ты думал здесь чтото будет?</b></p>
                 <p class="small">2022-01-21 09:00:00</p>
@@ -28,7 +84,6 @@
             <div class="col">
                 <h2>Очень оригинальное название</h2>
                 <img src="../static/images/img1.png" alt="">
-                <p>Описание вот этой вот картинки я ее конечно не вижу но вроде классная</p>
                 <p>категория заявки: <b>Первая категория</b></p>
                 <p>Статус заявки: <b>Одобренно</b></p>
                 <p class="small">2022-01-21 09:00:00</p>
