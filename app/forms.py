@@ -1,7 +1,7 @@
 from flask_wtf import FlaskForm
-from wtforms import StringField, PasswordField, TextAreaField, BooleanField, SubmitField
+from wtforms import StringField, PasswordField, TextAreaField, BooleanField, SubmitField, SelectField
 from wtforms.validators import ValidationError, DataRequired, Email, EqualTo, Length
-from app.models import User
+from app.models import User, Category
 
 class LoginForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired()])
@@ -33,7 +33,13 @@ class CreateOfferForm(FlaskForm):
     name=StringField('name', validators=[DataRequired()])
     description=TextAreaField('description')
     category=StringField('category', validators=[DataRequired()])
+    #MyChoices=[]
+    #AllCat = Category.query.all()
+    #for cat in AllCat:
+    #    MyChoices.append(cat.name)
+    #category=SelectField('category', choices=MyChoices)
     submit = SubmitField('Добавить заявку', validators=[DataRequired()])
+
 
 class CreateCategoryForm(FlaskForm):
     name=StringField('name', validators=[DataRequired()])

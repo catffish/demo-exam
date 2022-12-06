@@ -48,6 +48,10 @@
         {% else %}
 
         <div class="head">Ваши заявки</div>
+        <div class="row">
+            
+        </div>
+        <div class="head">Добавить Заявку</div>
         <form action="" method="post">
             {{ form.hidden_tag() }}
             <p>
@@ -60,22 +64,6 @@
                 {{ form.category(size=32) }}
             </p>
             {{form.submit}}
-        </form>
-        <div class="row">
-            
-        </div>
-        <div class="head">Добавить Заявку</div>
-        <form action="admin.html" enctype="multipart/form-data" method="post">
-            <input type="text" name="title" placeholder="Название" required pattern="{1,64}">
-            <textarea name="description" placeholder="Описание" required patter="{1,256}"></textarea>
-            <select required name="category" id="">
-                <option value selected disabled>Категория заявки</option>
-                <option value>Первая Категория</option>
-                <option value>Вторая Категория</option>
-            </select>
-            <p class="left">Фотография заявки</p>
-            <input type="file" required name="img">
-            <button>Создать Заявку</button>
         </form>
         {% endif %}
         </div>

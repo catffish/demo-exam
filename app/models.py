@@ -8,11 +8,10 @@ class User(UserMixin, db.Model):
     username = db.Column(db.String(64), index=True, unique=True)
     email = db.Column(db.String(120), index=True, unique=True)
     password_hash = db.Column(db.String(128))
-    offers = db.relationship('Offer', backref="author", lazy="dynamic")
+    offer = db.relationship('Offer', backref="author", lazy="dynamic")
     
     def __repr__(self):
         return 'user {}'.format(self.username)
-
 
     def set_password(self, password):
         self.password_hash = generate_password_hash(password)
@@ -28,8 +27,8 @@ class Offer(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True)
     description = db.Column(db.String(250))
-    categories = db.Column(db.Integer, db.ForeignKey('category.id'))
-    users = db.Column(db.Integer, db.ForeignKey('author.id'))
+    category = db.Column(db.String(64), index=True)
+    user_id = db.Column(db.Integer, db.ForeignKey('user.id'))
     time = db.Column(db.DateTime, index=True)
     status = db.Column(db.String(10))
 
@@ -39,7 +38,7 @@ class Offer(UserMixin, db.Model):
 class Category(UserMixin, db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(64), index=True, unique=True)
-    offers = db.relationship("Offer", backref="category", lazy="dynamic")
+    #offers = db.relationship("Offer", backref="category", lazy="dynamic")
 
     def __repr__(self):
         return '<Category {}>'.format(self.body)

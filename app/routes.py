@@ -49,30 +49,28 @@ def logout():
     logout_user()
     return redirect(url_for('index'))
 
-@app.route('/proile', methods=['GET', 'POST'])
+@app.route('/profile', methods=['GET', 'POST'])
 @login_required
 def profile():
     if current_user.username=="admin":
         form=CreateCategoryForm()
         if form.validate_on_submit():
-            category=Category(name=form.name.data)
+            category=Category(name=form.name.data.lower())
             db.session.add(category)
             db.session.commit()
             flash('Категория создана')
             return redirect(url_for('profile'))
-        offers=Offer.query.filter_by(status="новая")
     else:
         form=CreateOfferForm()
         if form.validate_on_submit():
-            category=Category.query.filter_by(name=form.name.data).first()
+            category=Category.query.filter_by(name=form.category.data.lower()).first()
             if category is None:
-                pass
+                return redirect(url_for('index'))
             else:
-                return redirect(url_for('login'))
-            offer=Offer(name=form.name.data, description=form.description.data, category=form.category.data, user=current_user.username)
+                pass
+            offer=Offer(name=form.name.data, description=form.description.data, category=form.category.data.lower(), author=current_user, time=datetime.utcnow(), status="новая")
             db.session.add(offer)
-            db.session.comit()
+            db.session.commit()
             flash('Заявка создана')
-            offers=Offer.query.filter_by(user = current_user.username)
             return redirect(url_for('profile'))
-    return render_template('profile.html', form=form, offers=offers)
+    return render_template('profile.html', form=form)
