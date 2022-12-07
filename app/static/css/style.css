@@ -108,11 +108,15 @@ div.col div.col-footer{
 
 div.col p.of-status{
     left: 20px;
+    text-align: left;
 }
 div.col p.of-status{
     right: 20px;
+    text-align: left;
 }
-
+div.col div.col-footer p.of-time{
+    margin-left: 46%;
+}
 div.col img {
     width: 100%;
     height: 300px;
