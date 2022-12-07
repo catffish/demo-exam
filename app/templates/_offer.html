@@ -1,8 +1,12 @@
 <div class="col">
-    <h1>{{name}}</h1>
+    <h3>{{ offer.name}}</h3>
     <img src="../static/images/img2.png">
-    <p>{{category}}</p>
+    <p><b>Категория:</b> {{ offer.category}}</p>
     {% if current_user.username=="admin" %}
-    <p>{{description}}</p>
+    <p><b>Описание:</b> {{ offer.description}}</p>
     {% endif %}
+    <div class="col-footer">
+        <p class="of-status">{{ offer.status }}</p>
+        <p class="of-time">{{ offer.time.strftime('%d.%m.%y %H:%M')}}</p>
+    </div>
 </div>

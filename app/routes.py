@@ -15,7 +15,8 @@ def before_request():
 @app.route('/')
 @app.route('/index')
 def index():
-    return render_template("index.html")
+    offers=Offer.query.all()
+    return render_template("index.html", offers=offers)
 
 @app.route('/registration', methods=['GET', 'POST'])
 def registration():
@@ -60,6 +61,7 @@ def profile():
             db.session.commit()
             flash('Категория создана')
             return redirect(url_for('profile'))
+        offers=Offer.query.all()
     else:
         form=CreateOfferForm()
         if form.validate_on_submit():
@@ -73,4 +75,5 @@ def profile():
             db.session.commit()
             flash('Заявка создана')
             return redirect(url_for('profile'))
-    return render_template('profile.html', form=form)
+        offers=Offer.query.filter_by(user=current_user.id)
+    return render_template('profile.html', form=form, offers=offers)

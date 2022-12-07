@@ -16,30 +16,19 @@
                 </form>
                 <div class="head">Новые заявки</div>
                 <div class="row">
-                    <div class="col">
-                        <img src="../static/images/Снимок экрана 2022-09-06 102946.png">
-                        <p>Статус заявки: <input type="text" name="status" placeholder="Изменить статус заявки"></p>
-                        <p>Создан пользователем: <b>Василий Петрович</b></p>
-                        <p>Описание</p>
-                        <p>Из-за таких ям на дорогах у меня на машине появилась цензура на номере</p>
-                        <input type="text" name="status" placeholder="Добавить коментарий"><br>
-                        <button>Обновить</button>
-                    </div>
-                    <div class="col">
-                        <img src="../static/images/Снимок экрана 2022-09-06 103010.png">
-                        <p>Статус заявки: <input type="text" name="status" placeholder="Изменить статус заявки"></p>
-                        <p>Создан пользователем: <b>Игорб</b></p>
-                        <p>Описание</p>
-                        <p>Мы пытались зарисовать ямы спомощью краски нечего не получилось :( почините дороги пожожда</p>
-                        <input type="text" name="status" placeholder="Добавить коментарий"><br>
-                        <button>Обновить</button>
-                    </div>
+                    {% for offer in offers %}
+                        {% if offer.status=='новая' %}
+                            {% include '_offer.html' %}
+                        {% endif %}
+                    {% endfor %}
                 </div>
                 <div class="head">Одобренные заявки</div>
                 <p class="small"></p>
                 <div class="row">
                     {% for offer in offers %}
-                        {% include '_offer.html' %}
+                        {% if offer.status=='одобрена' %}
+                            {% include '_offer.html' %}
+                        {% endif %}
                     {% endfor %}
                 </div>
             </div>
@@ -49,7 +38,9 @@
 
         <div class="head">Ваши заявки</div>
         <div class="row">
-            
+            {% for offer in offers %}
+                {% include '_offer.html' %}
+            {% endfor %}
         </div>
         <div class="head">Добавить Заявку</div>
         <form action="" method="post">
