@@ -65,6 +65,7 @@ def profile():
     else:
         form=CreateOfferForm()
         if form.validate_on_submit():
+            print("Возврат", form.submit.data)
             category=Category.query.filter_by(name=form.category.data.lower()).first()
             if category is None:
                 return redirect(url_for('index'))
@@ -76,4 +77,4 @@ def profile():
             flash('Заявка создана')
             return redirect(url_for('profile'))
         offers=Offer.query.filter_by(user=current_user.id)
-    return render_template('profile.html', form=form, offers=offers)
+    return render_template('profile.html', name='Профиль', form=form, offers=offers)
