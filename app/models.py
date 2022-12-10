@@ -28,6 +28,7 @@ class Offer(UserMixin, db.Model):
     name = db.Column(db.String(64), index=True)
     description = db.Column(db.String(250))
     category = db.Column(db.String(64), index=True)
+    photo = db.Column(db.String(128))
     user = db.Column(db.Integer, db.ForeignKey('user.id'))
     time = db.Column(db.DateTime, index=True)
     status = db.Column(db.String(10))
