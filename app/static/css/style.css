@@ -97,6 +97,20 @@ div.col {
     border: solid 1px rgba(0,0,0,0.3);
     box-shadow: 0 0 3px rgba(0,0,0,0.5);
 }
+div.col textarea{
+    resize: none;
+    font-size: 0.7em;
+    height: 75px;
+    margin-bottom: -15px;
+}
+div.col input.id{
+    visibility: hidden; 
+    height: 0px;
+    margin: -5px;
+}
+div.col input.offer-submit{
+    margin: -10px 0;
+}
 div.col div.col-footer{
     width: 80%;
     position: absolute;

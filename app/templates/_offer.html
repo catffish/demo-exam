@@ -1,20 +1,31 @@
-<div class="col">
-    <h3>{{ offer.name}}</h3>
-    <img src="../static/user_images/{{offer.photo}}">
-    <p><b>Категория:</b> {{ offer.category}}</p>
-    {% if name=="Профиль" %}
-        <p><b>Описание:</b> {{ offer.description}}</p>
+<div class="offer">
+    <div class="col">
+        <h3>{{ offer.name}}</h3>
+        <img src="../static/user_images/{{offer.photo}}">
+        <p><b>Категория:</b> {{ offer.category}}</p>
+        {% if name=="Профиль" %}
+            <p><b>Описание:</b> {{ offer.description}}</p>
+        {% endif %}
+        <div class="col-footer">
+            <h3 class="of-status">{{ offer.status }}</h3>
+            <p class="of-time">{{ offer.time.strftime('%d.%m.%y %H:%M')}}</p>
+        </div>
+    </div>
+    {% if name=="Профиль"%}
         {% if current_user.username=="admin" %}
             {% if offer.status=="новая" %}
-                <a href="{{ url_for('accept_offer', id=offer.id ) }}">Одобрить</a>
-                <a href="{{ url_for('reject_offer', id=offer.id ) }}">Отклонить</a>
+                <form action="/reject_offer" method="post">
+                    <textarea name="reason" id="reason" cols="30" rows="10"></textarea>
+                    <input type="number" name="id" class="id" value="{{offer.id}}">
+                    <input type="submit" class='offer-submit' value="Отклонить">
+                </form>
+                <form action="/accept_offer" method="post">
+                    <input type="number" name="id" class="id" value="{{offer.id}}">
+                    <input type="submit" class='offer-submit' value="Принять">
+                </form>
             {% endif %}
         {% else %}
             <a href="{{ url_for('delete_offer', id=offer.id  ) }}">Удалить заявку</a>
         {% endif %}
     {% endif %}
-    <div class="col-footer">
-        <h3 class="of-status">{{ offer.status }}</h3>
-        <p class="of-time">{{ offer.time.strftime('%d.%m.%y %H:%M')}}</p>
-    </div>
 </div>

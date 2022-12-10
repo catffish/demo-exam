@@ -115,15 +115,17 @@ def accept_offer(id):
         flash("у вас нет прав изменить статус этой заявки")
         return redirect(url_for('profile'))
 
-@app.route('/reject_offer/<id>', methods=["GET", "POST"])
+@app.route('/reject_offer/', methods=["GET", "POST"])
 @login_required
-def reject_offer(id):
-    offer = Offer.query.filter_by(id=id).first()
+def reject_offer():
+    offer = Offer.query.filter_by(id=request.form['id']).first()
     if current_user.username=="admin" and offer.status=="новая":
+        reason=request.form['reason']
         offer.status = 'отклонена'
+        offer.reason=reason
         db.session.commit()
         return redirect(url_for('profile'))
     else:
-        flash("у вас нет прав изменить статус этой заявки")
+        flash("У вас нет прав изменить статус этой заявки")
         return redirect(url_for('profile'))
     

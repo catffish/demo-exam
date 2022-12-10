@@ -39,10 +39,5 @@ class CreateOfferForm(FlaskForm):
 
 
 class CreateCategoryForm(FlaskForm):
-    name=StringField('name', validators=[DataRequired()])
+    name =   StringField('name', validators=[DataRequired()])
     submit = SubmitField('Создать категорию', validators=[DataRequired()])
-
-class UpdateOfferForm(FlaskForm):
-    status=SelectField('status', choices=['решена', 'отклонена'])
-    reason=StringField('reason', validators=[DataRequired()])
-    submit = SubmitField('Обновить заявку', validators=[DataRequired()])
