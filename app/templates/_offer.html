@@ -1,17 +1,13 @@
-<div class="offer">
-    <div class="col">
-        <h3>{{ offer.name}}</h3>
-        <img src="../static/user_images/{{offer.photo}}">
-        <p><b>Категория:</b> {{ offer.category}}</p>
-        {% if name=="Профиль" %}
-            <p><b>Описание:</b> {{ offer.description}}</p>
-        {% endif %}
-        <div class="col-footer">
-            <h3 class="of-status">{{ offer.status }}</h3>
-            <p class="of-time">{{ offer.time.strftime('%d.%m.%y %H:%M')}}</p>
-        </div>
+<div class="col">
+    <h3>{{ offer.name}}</h3>
+    <div class="col-header">
+        {% if name=="Профиль" %}<div class="col-one"><h3 class="of-status">{{ offer.status }}</h3></div>{% endif %}
+        <div class="col-two"><p class="of-time">{{ offer.time.strftime('%d.%m.%y %H:%M')}}</p></div>
     </div>
-    {% if name=="Профиль"%}
+    <img src="../static/user_images/{{offer.photo}}">
+    <p><b>Категория:</b> {{ offer.category}}</p>
+    {% if name=="Профиль" %}
+        <p><b>Описание:</b> {{ offer.description}}</p>
         {% if current_user.username=="admin" %}
             {% if offer.status=="новая" %}
                 <form action="/reject_offer" method="post">
@@ -25,7 +21,10 @@
                 </form>
             {% endif %}
         {% else %}
-            <a href="{{ url_for('delete_offer', id=offer.id  ) }}">Удалить заявку</a>
+        <form action="/delete_offer" method="post">
+            <input type="number" name="id" class="id" value="{{offer.id}}">
+            <input type="submit" class='offer-submit' value="Удалить">
+        </form>
         {% endif %}
     {% endif %}
 </div>

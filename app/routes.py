@@ -17,7 +17,7 @@ def before_request():
 @app.route('/')
 @app.route('/index')
 def index():
-    offers=Offer.query.all()
+    offers=db.session.query(Offer).order_by(Offer.id.desc()).limit(5).all()
     return render_template("index.html", offers=offers)
 
 @app.route('/registration', methods=['GET', 'POST'])
@@ -86,7 +86,7 @@ def profile():
         offers=Offer.query.filter_by(user=current_user.id)
     return render_template('profile.html', name='Профиль', form=form, offers=offers)
 
-@app.route('/delete_offer/<id>', methods=['GET', 'POST'])
+@app.route('/delete_offer', methods=['GET', 'POST'])
 @login_required
 def delete_offer(id):
     offer=Offer.query.filter_by(id=id).first()
@@ -103,7 +103,7 @@ def delete_offer(id):
         flash('Нельзя удалить отклонённую или решённую заявку')
         return (redirect(url_for('profile')))
 
-@app.route('/accept_offer/<id>', methods=["GET", "POST"])
+@app.route('/accept_offer', methods=["GET", "POST"])
 @login_required
 def accept_offer(id):
     offer = Offer.query.filter_by(id=id).first()

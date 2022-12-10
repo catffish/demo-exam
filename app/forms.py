@@ -34,7 +34,7 @@ class CreateOfferForm(FlaskForm):
     name=StringField('name', validators=[DataRequired()])
     description=TextAreaField('description')
     category=StringField('category', validators=[DataRequired()])
-    photo=FileField('Выберите фотографию', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'jpeg', 'gif'], "Недопустимый формат файла")])
+    photo=FileField('Выберите фотографию', validators=[FileRequired(), FileAllowed(['jpg', 'png', 'jpeg', 'bmp'], "Недопустимый формат файла")])
     submit = SubmitField('Добавить заявку', validators=[DataRequired()])
 
 

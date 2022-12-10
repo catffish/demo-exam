@@ -64,7 +64,7 @@ p.center {
     text-align: center !important;
 }
 div.content {
-    max-width: 800px;
+    max-width: 860px;
     padding: 0 20px;
     margin: 0 auto;
 }
@@ -89,7 +89,6 @@ div.row {
 div.col {
     position: relative;
     width: 49%;
-    height: 740px;
     padding: 20px;
     margin: 10px 0;
     border-radius: 5px;
@@ -111,26 +110,26 @@ div.col input.id{
 div.col input.offer-submit{
     margin: -10px 0;
 }
-div.col div.col-footer{
-    width: 80%;
-    position: absolute;
-    bottom: 20px;
+div.col div.col-header{
+    width: 100%;
+    margin: 0 auto;
 
     display: flex;
+    flex-direction: column;
+}
+div.col div.col-one{
+    width: 50%;
+    display: flex;
     flex-direction: row;
+    justify-content: start;
+}
+div.col div.col-two{
+    width: 50%;
+    display: flex;
+    flex-direction: row;
+    justify-content: start;
 }
 
-div.col p.of-status{
-    left: 20px;
-    text-align: left;
-}
-div.col p.of-status{
-    right: 20px;
-    text-align: left;
-}
-div.col div.col-footer p.of-time{
-    margin-left: 46%;
-}
 div.col p.of-id{
     font-size: 0.7em;
 }
@@ -142,7 +141,7 @@ div.col h2 {
     font-size: 1.4em;
     text-align: center;
 }
-div.col-footer h3{
+div.col-header h3{
     color: rgb(229, 11, 11);
     text-transform: uppercase;
 }
