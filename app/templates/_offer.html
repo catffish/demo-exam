@@ -8,8 +8,8 @@
     <p><b>Категория:</b> {{ offer.category}}</p>
     {% if name=="Профиль" %}
         <p><b>Описание:</b> {{ offer.description}}</p>
-        {% if current_user.username=="admin" %}
-            {% if offer.status=="новая" %}
+        {% if offer.status=="новая" %}
+            {% if current_user.username=="admin" %}
                 <form action="/reject_offer" method="post">
                     <textarea name="reason" id="reason" cols="30" rows="10"></textarea>
                     <input type="number" name="id" class="id" value="{{offer.id}}">
@@ -19,12 +19,12 @@
                     <input type="number" name="id" class="id" value="{{offer.id}}">
                     <input type="submit" class='offer-submit' value="Принять">
                 </form>
+            {% else %}
+                <form action="/delete_offer" method="post">
+                <input type="number" name="id" class="id" value="{{offer.id}}">
+                <input type="submit" class='offer-submit' value="Удалить">
+            </form>
             {% endif %}
-        {% else %}
-        <form action="/delete_offer" method="post">
-            <input type="number" name="id" class="id" value="{{offer.id}}">
-            <input type="submit" class='offer-submit' value="Удалить">
-        </form>
         {% endif %}
     {% endif %}
 </div>

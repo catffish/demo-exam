@@ -88,10 +88,10 @@ def profile():
 
 @app.route('/delete_offer', methods=['GET', 'POST'])
 @login_required
-def delete_offer(id):
-    offer=Offer.query.filter_by(id=id).first()
+def delete_offer():
+    offer=Offer.query.filter_by(id=request.form['id']).first()
     if current_user.id==offer.user and offer.status=="новая":
-        Offer.query.filter_by(id=id).delete()
+        Offer.query.filter_by(id=request.form['id']).delete()
         f=os.path.join(app.config['UPLOAD_FOLDER'], offer.photo)
         os.remove(f)
         db.session.commit()
@@ -105,7 +105,7 @@ def delete_offer(id):
 
 @app.route('/accept_offer', methods=["GET", "POST"])
 @login_required
-def accept_offer(id):
+def accept_offer():
     offer = Offer.query.filter_by(id=id).first()
     if current_user.username=="admin" and offer.status=="новая":
         offer.status = 'решена'
@@ -115,7 +115,7 @@ def accept_offer(id):
         flash("у вас нет прав изменить статус этой заявки")
         return redirect(url_for('profile'))
 
-@app.route('/reject_offer/', methods=["GET", "POST"])
+@app.route('/reject_offer', methods=["GET", "POST"])
 @login_required
 def reject_offer():
     offer = Offer.query.filter_by(id=request.form['id']).first()
